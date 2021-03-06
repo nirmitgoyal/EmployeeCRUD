@@ -1,0 +1,7 @@
+*.iml
+.idea/
+
+# Project exclude paths
+/employeeservApi/target/
+/employeeservFunctionalTests/target/
+/employeeservImplementation/target/
