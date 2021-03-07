@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "0a684322-284f-40c1-a24d-44a3e3d40d44",
+		"name": "Employee ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/bfs/employees/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bfs",
+						"employees",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"first_name\": \"Nirmit\",\n    \"last_name\": \"Goyal\",\n    \"date_of_birth\": \"01-12-1935\",\n    \"address_line1\": \"L1008\",\n    \"address_line2\": \"Brigade\",\n    \"city\": \"Bangalore\",\n    \"state\": \"KA\",\n    \"country\": \"India\",\n    \"zip_code\": \"560055\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/bfs/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bfs",
+						"employee"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"first_name\": \"Nirmit\",\n    \"last_name\": \"Goyal\",\n    \"date_of_birth\": \"01-12-1935\",\n    \"address_line1\": \"L1008\",\n    \"address_line2\": \"Brigade\",\n    \"city\": \"Bangalore\",\n    \"state\": \"KA\",\n    \"country\": \"India\",\n    \"zip_code\": \"560055\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/bfs/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"bfs",
+								"employee"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Mar 2021 10:27:17 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "Employee created"
+				},
+				{
+					"name": "create: idempotent case",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"first_name\": \"Nirmit\",\n    \"last_name\": \"Goyal\",\n    \"date_of_birth\": \"01-12-1935\",\n    \"address_line1\": \"L1008\",\n    \"address_line2\": \"Brigade\",\n    \"city\": \"Bangalore\",\n    \"state\": \"KA\",\n    \"country\": \"India\",\n    \"zip_code\": \"560055\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/bfs/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"bfs",
+								"employee"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Mar 2021 10:34:53 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "Employee already exists"
+				},
+				{
+					"name": "create invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"first_name\": \"Nirmit\",\n    \"last_name\": \"Goyal\",\n\n    \"address_line1\": \"L1008\",\n    \"address_line2\": \"Brigade\",\n    \"city\": \"Bangalore\",\n    \"state\": \"KA\",\n    \"country\": \"India\",\n    \"zip_code\": \"560055\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/bfs/employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"bfs",
+								"employee"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Mar 2021 10:28:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"field\": \"Date of Birth\",\n        \"message\": \"Required\"\n    }\n]"
+				}
+			]
+		}
+	]
+}
