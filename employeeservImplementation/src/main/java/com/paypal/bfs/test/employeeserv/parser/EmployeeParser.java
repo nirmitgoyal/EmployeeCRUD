@@ -19,6 +19,7 @@ public class EmployeeParser {
      */
     public EmployeeTable toObject(Employee employee) {
         return EmployeeTable.builder()
+                .id(employee.getId())
                 .first_name(employee.getFirstName())
                 .last_name(employee.getLastName())
                 .date_of_birth(employee.getDateOfBirth())
@@ -39,6 +40,7 @@ public class EmployeeParser {
      */
     public Employee toJSON(EmployeeTable employeeTable) {
         return new Employee()
+                .withId(employeeTable.getId())
                 .withFirstName(employeeTable.getFirst_name())
                 .withLastName(employeeTable.getLast_name())
                 .withDateOfBirth(employeeTable.getDate_of_birth())

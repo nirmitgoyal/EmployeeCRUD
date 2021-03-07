@@ -18,57 +18,52 @@ public class Validator {
     /**
      * The constant FIRST_NAME.
      */
-    private static final String FIRST_NAME = "First Name";
+    public static final String FIRST_NAME = "First Name";
     /**
      * The constant LAST_NAME.
      */
-    private static final String LAST_NAME = "Last Name";
+    public static final String LAST_NAME = "Last Name";
     /**
      * The constant DATE_OF_BIRTH.
      */
-    private static final String DATE_OF_BIRTH = "Date of Birth";
+    public static final String DATE_OF_BIRTH = "Date of Birth";
     /**
      * The constant ADDRESS_LINE_1.
      */
-    private static final String ADDRESS_LINE_1 = "Address Line 1";
+    public static final String ADDRESS_LINE_1 = "Address Line 1";
     /**
      * The constant ADDRESS_LINE_2.
      */
-    private static final String ADDRESS_LINE_2 = "Address Line 2";
+    public static final String ADDRESS_LINE_2 = "Address Line 2";
     /**
      * The constant CITY.
      */
-    private static final String CITY = "City";
+    public static final String CITY = "City";
     /**
      * The constant STATE.
      */
-    private static final String STATE = "State";
+    public static final String STATE = "State";
     /**
      * The constant ZIP_CODE.
      */
-    private static final String ZIP_CODE = "zip code";
+    public static final String ZIP_CODE = "zip code";
     /**
      * The constant COUNTRY.
      */
-    private static final String COUNTRY = "Country";
+    public static final String COUNTRY = "Country";
     /**
      * The constant MAX_LENGTH.
      */
-    private static final int MAX_LENGTH = 255;
+    public static final int MAX_LENGTH = 255;
     /**
      * The constant REQUIRED.
      */
-    private static final String REQUIRED = "Required";
+    public static final String REQUIRED = "Required";
     /**
      * The constant MAX_LENGTH_IS.
      */
-    private static final String MAX_LENGTH_IS = "Max length is ";
+    public static final String MAX_LENGTH_IS = "Max length is ";
 
-
-    /**
-     * The Errors list.
-     */
-    private List<Errors> errorsList = new ArrayList<>();
 
     /**
      * Validate optional.
@@ -77,8 +72,10 @@ public class Validator {
      * @return the optional
      */
     public Optional<List<Errors>> validate(Employee employee) {
-        checkForRequired(employee);
-        checkForLength(employee);
+        List<Errors> errorsList = new ArrayList<>();
+
+        checkForRequired(employee,errorsList);
+        checkForLength(employee,errorsList);
 
         return errorsList.size() > 0 ? Optional.of(errorsList) : Optional.empty();
     }
@@ -86,9 +83,10 @@ public class Validator {
     /**
      * Check for length.
      *
-     * @param employee the employee
+     * @param employee   the employee
+     * @param errorsList the errors list
      */
-    private void checkForLength(Employee employee) {
+    private void checkForLength(Employee employee, List<Errors> errorsList) {
         if (isValidLength(employee.getFirstName(), MAX_LENGTH))
             errorsList.add(Errors.builder()
                     .field(FIRST_NAME)
@@ -136,8 +134,9 @@ public class Validator {
      * Check for required.
      *
      * @param employeeRequest the employee request
+     * @param errorsList      the errors list
      */
-    private void checkForRequired(Employee employeeRequest) {
+    private void checkForRequired(Employee employeeRequest, List<Errors> errorsList) {
         if (isEmpty(employeeRequest.getFirstName()))
             errorsList.add(Errors.builder()
                     .field(FIRST_NAME)

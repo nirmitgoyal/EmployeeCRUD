@@ -5,6 +5,7 @@ import com.paypal.bfs.employeeserv.api.model.Employee;
 import com.paypal.bfs.test.employeeserv.errors.Errors;
 import com.paypal.bfs.test.employeeserv.service.EmployeeService;
 import com.paypal.bfs.test.employeeserv.util.Validator;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ import static org.springframework.http.HttpStatus.OK;
  * The type Employee resource.
  */
 @RestController
+@AllArgsConstructor
 public class EmployeeResourceImpl implements EmployeeResource {
 
     /**
@@ -37,17 +39,6 @@ public class EmployeeResourceImpl implements EmployeeResource {
     @Autowired
     private final Validator validator;
 
-    /**
-     * Instantiates a new Employee resource.
-     *
-     * @param employeeService the employee service
-     * @param validator       the validator
-     */
-    private EmployeeResourceImpl(EmployeeService employeeService, Validator validator) {
-        this.employeeService = employeeService;
-        this.validator = validator;
-    }
-
     @Override
     public ResponseEntity<Employee> employeeGetById(Long id) {
         return employeeService
@@ -57,23 +48,23 @@ public class EmployeeResourceImpl implements EmployeeResource {
     }
 
     @Override
-    public ResponseEntity createEmployee(Employee employeeRequest) {
-        if (employeeRequest.getId() != null) {
-            Optional<Employee> employee = employeeService.byId(employeeRequest.getId());
+    public ResponseEntity createEmployee(Employee employee) {
+        if (employee.getId() != null) {
+            Optional<Employee> e = employeeService.byId(employee.getId());
 
-            if (employee.isPresent())
+            if (e.isPresent())
                 return ResponseEntity
                         .status(FORBIDDEN)
                         .body("Employee already exists");
         }
 
-        Optional<List<Errors>> error = validator.validate(employeeRequest);
+        Optional<List<Errors>> error = validator.validate(employee);
         if (error.isPresent())
             return ResponseEntity
                     .status(BAD_REQUEST)
                     .body(error);
 
-        return employeeService.create(employeeRequest)
+        return employeeService.create(employee)
                 ?
                 ResponseEntity
                         .status(CREATED)

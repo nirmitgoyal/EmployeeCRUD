@@ -3,9 +3,11 @@ package com.paypal.bfs.test.employeeserv.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * The type Errors.
@@ -15,6 +17,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
+@ToString
+@EqualsAndHashCode
 public class Errors {
     /**
      * The Field.

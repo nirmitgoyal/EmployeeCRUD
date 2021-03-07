@@ -2,8 +2,9 @@ package com.paypal.bfs.test.employeeserv.service;
 
 import com.paypal.bfs.employeeserv.api.model.Employee;
 import com.paypal.bfs.test.employeeserv.dao.EmployeeRepository;
-import com.paypal.bfs.test.employeeserv.parser.EmployeeParser;
 import com.paypal.bfs.test.employeeserv.model.EmployeeTable;
+import com.paypal.bfs.test.employeeserv.parser.EmployeeParser;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
  * The type Employee service.
  */
 @Service
+@AllArgsConstructor
 public class EmployeeService {
     /**
      * The Employee repository.
@@ -24,17 +26,6 @@ public class EmployeeService {
      */
     @Autowired
     private final EmployeeParser employeeParser;
-
-    /**
-     * Instantiates a new Employee service.
-     *
-     * @param employeeRepository the employee repository
-     * @param employeeParser     the employee parser
-     */
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeParser employeeParser) {
-        this.employeeRepository = employeeRepository;
-        this.employeeParser = employeeParser;
-    }
 
     /**
      * By id optional.
