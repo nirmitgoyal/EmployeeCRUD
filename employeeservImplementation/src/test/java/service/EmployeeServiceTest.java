@@ -37,7 +37,7 @@ class EmployeeServiceTest {
         when(employeeParser.toJSON(ArgumentMatchers.any()))
                 .thenReturn(new Employee());
 
-        Optional<Employee> result = employeeService.byId(Long.valueOf(1));
+        Optional<Employee> result = employeeService.byId(1L);
         Assertions.assertEquals(Optional.empty(), result);
     }
 
@@ -50,14 +50,14 @@ class EmployeeServiceTest {
         when(employeeParser.toJSON(TEST_EMPLOYEE_TABLE))
                 .thenReturn(TEST_EMPLOYEE);
 
-        Optional<Employee> result = employeeService.byId(Long.valueOf(1));
+        Optional<Employee> result = employeeService.byId(1L);
         Assertions.assertEquals(Optional.of(TEST_EMPLOYEE), result);
     }
 
 
     @Test
     void testCreate() {
-        when(employeeParser.toObject(ArgumentMatchers.any())).thenReturn(new EmployeeTable(Long.valueOf(1), "first_name", "last_name", "date_of_birth", "address_line1", "address_line2", "city", "state", "country", "zip_code"));
+        when(employeeParser.toObject(ArgumentMatchers.any())).thenReturn(new EmployeeTable(1L, "first_name", "last_name", "date_of_birth", "address_line1", "address_line2", "city", "state", "country", "zip_code"));
 
         boolean result = employeeService.create(new Employee());
         Assertions.assertEquals(true, result);

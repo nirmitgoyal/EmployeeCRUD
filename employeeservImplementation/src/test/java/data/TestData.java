@@ -1,9 +1,18 @@
 package data;
 
 import com.paypal.bfs.employeeserv.api.model.Employee;
+import com.paypal.bfs.test.employeeserv.errors.Errors;
 import com.paypal.bfs.test.employeeserv.model.EmployeeTable;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static com.paypal.bfs.test.employeeserv.util.Validator.DATE_OF_BIRTH;
+import static com.paypal.bfs.test.employeeserv.util.Validator.REQUIRED;
+
 public class TestData {
+
+    public static final List<Errors> ERRORS = Arrays.asList(new Errors(DATE_OF_BIRTH, REQUIRED));
     public static final Employee TEST_EMPLOYEE = new Employee()
             .withId(1l)
             .withFirstName("Nirmit")

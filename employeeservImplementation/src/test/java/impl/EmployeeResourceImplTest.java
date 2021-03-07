@@ -40,7 +40,7 @@ class EmployeeResourceImplTest {
     void testEmployeeGetById_notFound() {
         when(employeeService.byId(ArgumentMatchers.anyLong())).thenReturn(Optional.empty());
 
-        ResponseEntity<Employee> result = employeeResourceImpl.employeeGetById(Long.valueOf(1));
+        ResponseEntity<Employee> result = employeeResourceImpl.employeeGetById(1L);
         assertEquals(new ResponseEntity<>(NOT_FOUND), result);
     }
 
@@ -49,7 +49,7 @@ class EmployeeResourceImplTest {
         when(employeeService.byId(ArgumentMatchers.anyLong()))
                 .thenReturn(Optional.of(TEST_EMPLOYEE));
 
-        ResponseEntity<Employee> result = employeeResourceImpl.employeeGetById(Long.valueOf(1));
+        ResponseEntity<Employee> result = employeeResourceImpl.employeeGetById(1L);
         assertEquals(new ResponseEntity<>(TEST_EMPLOYEE, OK), result);
     }
 

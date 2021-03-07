@@ -10,7 +10,7 @@ import static data.TestData.TEST_EMPLOYEE;
 import static data.TestData.TEST_EMPLOYEE_TABLE;
 
 class EmployeeParserTest {
-    EmployeeParser employeeParser = new EmployeeParser();
+    final EmployeeParser employeeParser = new EmployeeParser();
 
     @Test
     void testToObject() {
