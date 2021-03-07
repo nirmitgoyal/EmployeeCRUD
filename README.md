@@ -2,7 +2,7 @@
 
 ##Note
 * Please contact me incase of any issue while running
-* Postman collection: https://www.getpostman.com/collections/c983d05128d2ccdcc6ba (Postman collection also present in the code)
+* Postman collection(with all examples created in 'Examples' tab: https://www.getpostman.com/collections/c983d05128d2ccdcc6ba (Postman collection also present in the code)
 
 ## Application Overview
 
